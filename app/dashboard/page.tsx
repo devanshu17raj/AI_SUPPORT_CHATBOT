@@ -1,17 +1,18 @@
-import DashboardClient from '@/components/DashboardClient';
+import EmbedClient from '@/components/EmbedClient';
 import { getSession } from '@/lib/getSession';
 import React from 'react';
 
 async function page() {
   const session = await getSession();
 
-  // Cast to 'any' to bypass the strict layout check for 'id'
+  // 1. Cast the session to 'any' to bypass strict type checking on this page
   const safeSession = session as any;
 
   return (
     <>
-      {/* TypeScript will now safely let 'id' pass through without crashing the build */}
-      <DashboardClient ownerId={safeSession?.user?.id} />
+      {/* 2. Update session to safeSession here */}
+      {/* Pass the dynamic user ID as a prop to the Client Component */}
+      <EmbedClient ownerId={safeSession?.user?.id} />
     </>
   );
 }
