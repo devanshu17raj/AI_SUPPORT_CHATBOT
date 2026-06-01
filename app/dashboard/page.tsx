@@ -5,13 +5,12 @@ import React from 'react';
 async function page() {
   const session = await getSession();
 
-  // 1. Cast the session to 'any' to bypass strict type checking on this page
+  // 1. Cast the session to 'any' to bypass strict type checking
   const safeSession = session as any;
 
   return (
     <>
-      {/* 2. Update session to safeSession here */}
-      {/* Pass the dynamic user ID as a prop to the Client Component */}
+      {/* 2. MAKE SURE THIS SAYS 'safeSession' AND NOT 'session' */}
       <EmbedClient ownerId={safeSession?.user?.id} />
     </>
   );
